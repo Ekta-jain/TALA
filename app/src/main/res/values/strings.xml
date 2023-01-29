@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TALA</string>
+    <string name="approved_header">Your Application is Approved</string>
+    <string name="approved_sub_header">You have been approved for </string>
+    <string name="approved_button_text">View Loan Offer</string>
+
+    <string name="paid_header">Your loan is fully paid</string>
+    <string name="paid_sub_header">Apply for another loan any time you want and grow your limit</string>
+</resources>
