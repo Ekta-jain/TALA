@@ -1,6 +1,7 @@
 package com.e4ekta.tala.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Loan(
     @SerializedName("approved")
@@ -13,4 +14,4 @@ data class Loan(
     val level: String,
     @SerializedName("status")
     val status: String
-)
+) : Serializable

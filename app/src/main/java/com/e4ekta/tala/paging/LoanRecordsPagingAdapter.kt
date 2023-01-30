@@ -3,70 +3,117 @@ package com.e4ekta.tala.paging
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.e4ekta.tala.OnItemClickListener
 import com.e4ekta.tala.R
 import com.e4ekta.tala.databinding.ItemLoanDueRecordsBinding
 import com.e4ekta.tala.databinding.ItemLoanRecordsBinding
 import com.e4ekta.tala.models.LoanResponseItem
+import com.e4ekta.tala.models.LocalsData
 
-class LoanRecordsPagingAdapter :
-    PagingDataAdapter<LoanResponseItem, LoanRecordsPagingAdapter.LoanRecordViewHolder>(COMPARATOR) {
+class LoanRecordsPagingAdapter(val result: Map<String, LocalsData>, val listener: OnItemClickListener) :
+    PagingDataAdapter<LoanResponseItem, RecyclerView.ViewHolder>(COMPARATOR) {
 
-    class LoanRecordViewHolder(binding: ItemLoanRecordsBinding) :
+    private val VIEW_TYPE_DUE = 0
+    private val VIEW_TYPE_NON_DUE = 1
+
+    inner class LoanRecordViewHolder(val binding: ItemLoanRecordsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val tvHeader: TextView = binding.tvHeader
-        val tvSubHeader: TextView = binding.tvSubHeader
-    }
+        private val tvHeader: TextView = binding.tvHeader
+        private val tvSubHeader: TextView = binding.tvSubHeader
+        val imgHeader: AppCompatImageView = binding.imageHeader
 
-    class TextTypeViewHolder(binding: ItemLoanDueRecordsBinding) : RecyclerView.ViewHolder(binding.root) {
-//        var txtType: TextView
-//        var cardView: CardView
-//
-//        init {
-//            txtType = itemView.findViewById(R.id.type) as TextView
-//            cardView = itemView.findViewById(R.id.card_view) as CardView
-//        }
-    }
-
-//    override fun getItemViewType(position: Int): Int {
-//        return when (dataSet.get(position).type) {
-//            0 -> Model.TEXT_TYPE
-//            1 -> Model.IMAGE_TYPE
-//            2 -> Model.AUDIO_TYPE
-//            else -> -1
-//        }
-//    }
-
-    override fun onBindViewHolder(holder: LoanRecordViewHolder, position: Int) {
-        val item = getItem(position)
-        if (item != null) {
-            holder.tvHeader.text = item.username
-            /*item.loan?.let {
-                Log.i("GetIdea","="+it.status +"::"+ LoanStatus.APPROVED.toString())
-                if (it.status == LoanStatus.APPROVED.toString()) {
-                    holder.tvHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
-                    holder.tvSubHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
-                } else if (it.status == LoanStatus.PAID.toString()) {
-                    holder.tvHeader.text = holder.itemView.context.resources.getString(R.string.paid_header);
-                    holder.tvSubHeader.text = holder.itemView.context.resources.getString(R.string.paid_sub_header);
-
+        fun bindData(loanResponseItem: LoanResponseItem) {
+            val localsData = result[loanResponseItem.locale] as LocalsData
+            loanResponseItem.loan?.let {
+                if (it.status == LoanStatus.approved.toString()) {
+                    tvHeader.text = binding.root.context.resources.getString(R.string.approved_header)
+                    tvSubHeader.text = String.format(
+                        binding.root.context.resources.getString(R.string.approved_sub_header),
+                        localsData.currency,
+                        it.approvedAmount
+                    )
+                    imgHeader.background = ContextCompat.getDrawable(
+                        binding.root.context,
+                        R.drawable.img_loan_status_approved
+                    )
+                } else if (it.status == LoanStatus.paid.toString()) {
+                    tvHeader.text = binding.root.context.resources.getString(R.string.paid_header)
+                    tvSubHeader.text = binding.root.context.resources.getString(R.string.paid_sub_header)
+                    imgHeader.background = ContextCompat.getDrawable(
+                        binding.root.context,
+                        R.drawable.img_loan_status_paidoff
+                    )
                 }
-            }*/
+            }
+
+            itemView.setOnClickListener {
+                listener.onItemClick(loanResponseItem)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanRecordViewHolder {
-        return LoanRecordViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_loan_records,
-                parent,
-                false
+    inner class LoanDueRecordViewHolder(val binding: ItemLoanDueRecordsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val tvHeader: TextView = binding.tvHeader
+        val tvDueAmount: TextView = binding.tvDueAmount
+
+        fun bindData(loanResponseItem: LoanResponseItem) {
+            tvHeader.text = binding.root.context.resources.getString(R.string.you_are_on_track)
+            val localsData = result[loanResponseItem.locale] as LocalsData
+            tvDueAmount.text = String.format(
+                binding.root.context.resources.getString(R.string.due_amount),
+                localsData.currency, loanResponseItem.loan?.dueAmount
             )
-        )
+            itemView.setOnClickListener {
+                listener.onItemClick(loanResponseItem)
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = getItem(position)
+
+        item?.let { it ->
+            when (getItemViewType(position)) {
+                VIEW_TYPE_DUE -> (holder as LoanDueRecordViewHolder).bindData(it)
+                VIEW_TYPE_NON_DUE -> (holder as LoanRecordViewHolder).bindData(it)
+                else -> {}
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)?.loan?.status) {
+            LoanStatus.due.toString() -> VIEW_TYPE_DUE
+            else -> VIEW_TYPE_NON_DUE
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_DUE -> LoanDueRecordViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_loan_due_records,
+                    parent,
+                    false
+                )
+            )
+            else -> LoanRecordViewHolder(
+                DataBindingUtil.inflate(
+                    LayoutInflater.from(parent.context),
+                    R.layout.item_loan_records,
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
     companion object {
@@ -88,6 +135,6 @@ class LoanRecordsPagingAdapter :
     }
 
     enum class LoanStatus {
-        APPROVED, PAID, OFFERED, DUE
+        approved, paid, due
     }
 }

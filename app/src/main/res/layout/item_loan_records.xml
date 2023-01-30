@@ -28,9 +28,9 @@
                     android:id="@+id/imageHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_20sdp"
                     android:layout_gravity="center"
-                     />
+                    android:padding="@dimen/_20sdp"
+                    android:background="@drawable/img_loan_status_approved"/>
 
             </FrameLayout>
 

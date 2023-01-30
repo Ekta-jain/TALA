@@ -1,6 +1,7 @@
 package com.e4ekta.tala.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class LoanResponseItem(
     @SerializedName("id")
@@ -13,4 +14,4 @@ data class LoanResponseItem(
     val timestamp: Long,
     @SerializedName("username")
     val username: String
-)
+) : Serializable
