@@ -2,9 +2,9 @@
 
 ### Output Screenshots and Videos
 ---
-| Due loan item | Approved loan item | Paid loan item | Detail Page
-|:-:|:-:|:-:|
-| ![Screenshot showing due loan cards](./app/sampledata/TALA_1.png) | ![Screenshot showing approved loan cards](./app/sampledata/TALA_2.png) | ![Screenshot showing paid loan cards](./app/sampledata/TALA_3.png) | ![Screenshot showing details page](./app/sampledata/Screenshot_20230131_024702.png)
+| Due loan item | Approved loan item | Paid loan item | Detail Page |
+|:-:|:-:|:-:|:-:|
+| ![Screenshot showing due loan cards](./app/sampledata/TALA_1.png) | ![Screenshot showing approved loan cards](./app/sampledata/TALA_2.png) | ![Screenshot showing paid loan cards](./app/sampledata/TALA_3.png) | ![Screenshot showing details page](./app/sampledata/Screenshot_20230131_024702.png) |
 
 ## 📃 TechStack used
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
