@@ -7,7 +7,7 @@ data class Loan(
     @SerializedName("approved")
     val approved: Int,
     @SerializedName("due")
-    val due: Int,
+    val dueAmount: Int,
     @SerializedName("dueDate")
     val dueDate: Long,
     @SerializedName("level")
