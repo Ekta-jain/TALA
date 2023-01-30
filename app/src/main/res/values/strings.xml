@@ -6,4 +6,5 @@
 
     <string name="paid_header">Your loan is fully paid</string>
     <string name="paid_sub_header">Apply for another loan any time you want and grow your limit</string>
+    <string name="apply_now">Apply Now</string>
 </resources>
