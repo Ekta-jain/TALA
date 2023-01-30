@@ -15,14 +15,13 @@ class LoaderAdapter : LoadStateAdapter<LoaderAdapter.LoaderViewHolder>() {
     class LoaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
 
-        fun bind(loadState: LoadState){
+        fun bind(loadState: LoadState) {
             progressBar.isVisible = loadState is LoadState.Loading
         }
-
     }
 
     override fun onBindViewHolder(holder: LoaderViewHolder, loadState: LoadState) {
-      holder.bind(loadState)
+        holder.bind(loadState)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoaderViewHolder {

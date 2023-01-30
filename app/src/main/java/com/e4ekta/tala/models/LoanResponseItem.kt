@@ -1,7 +1,5 @@
 package com.e4ekta.tala.models
 
-
-import com.e4ekta.tala.models.Loan
 import com.google.gson.annotations.SerializedName
 
 data class LoanResponseItem(

@@ -1,7 +1,6 @@
 package com.e4ekta.tala
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +13,8 @@ import com.e4ekta.tala.utils.Constants.loadJSONFromAsset
 import com.e4ekta.tala.viewmodels.LoanViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONObject
 import kotlin.collections.HashMap
-
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -44,14 +42,15 @@ class MainActivity : AppCompatActivity() {
             footer = LoaderAdapter()
         )
 
-        loanViewModel.list.observe(this, Observer {
-            adapter.submitData(lifecycle, it)
-        })
-
-
+        loanViewModel.list.observe(
+            this,
+            Observer {
+                adapter.submitData(lifecycle, it)
+            }
+        )
     }
     /*this function helps to get map data from local json[which is on assests folder]  */
-    private fun setupMapWithLocalsJson(): Map<String,LocalsData> {
+    private fun setupMapWithLocalsJson(): Map<String, LocalsData> {
         val localsString = loadJSONFromAsset(this, "locals.json")
         val obj = JSONObject(localsString!!)
         val results: HashMap<String, LocalsData> = HashMap()

@@ -13,7 +13,7 @@ object Constants {
 
     /* Assumptions : Locals.json in local json file,so I have read it an parse in into map
     as it having dynamic keys like ke ms kh */
-    fun loadJSONFromAsset(context: Context, fileName :String): String? {
+    fun loadJSONFromAsset(context: Context, fileName: String): String? {
         var json: String? = null
         json = try {
             val `is`: InputStream = context.assets.open(fileName)

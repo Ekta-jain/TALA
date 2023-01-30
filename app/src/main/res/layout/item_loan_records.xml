@@ -40,8 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:text="Apply for a Loan"
-                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:text="@string/apply_for_a_loan"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/frameImageHeader" />
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:text="Repay on Time to get loan ups to 30,000"
+                android:text="@string/repay_on_time_to_get_loan_ups_to_30_000"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvHeader" />

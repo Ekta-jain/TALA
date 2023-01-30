@@ -1,6 +1,5 @@
 package com.e4ekta.tala.models
 
-
 import com.google.gson.annotations.SerializedName
 
 data class LocalsData(

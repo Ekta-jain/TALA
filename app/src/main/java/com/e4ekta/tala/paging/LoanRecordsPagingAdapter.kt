@@ -1,7 +1,6 @@
 package com.e4ekta.tala.paging
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -56,7 +55,6 @@ class LoanRecordsPagingAdapter :
 
                 }
             }*/
-
         }
     }
 
@@ -89,29 +87,7 @@ class LoanRecordsPagingAdapter :
         }
     }
 
-
     enum class LoanStatus {
         APPROVED, PAID, OFFERED, DUE
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
