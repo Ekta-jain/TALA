@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'org.jlleitschuh.gradle.ktlint' version '11.1.0'
 }
 
 android {
@@ -34,6 +35,20 @@ android {
     }
     dataBinding {
         enabled true
+    }
+}
+
+tasks.getByPath('preBuild').dependsOn('ktlintFormat')
+// Follow for rules list https://pinterest.github.io/ktlint/rules/standard/
+// plugin link https://github.com/JLLeitschuh/ktlint-gradle
+ktlint {
+    android = true
+    ignoreFailures = false
+    disabledRules = ['no-wildcard-imports']
+    reporters {
+        reporter 'plain'
+        reporter 'checkstyle'
+        reporter 'sarif'
     }
 }
 
