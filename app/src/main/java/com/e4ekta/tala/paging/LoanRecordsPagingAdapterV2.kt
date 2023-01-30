@@ -53,7 +53,7 @@ class LoanRecordsPagingAdapterV2 :
 
         fun bindData(loanResponseItem: LoanResponseItem) {
             tvHeader.text = binding.root.context.resources.getString(R.string.you_are_on_track);
-            tvDueAmount.text = loanResponseItem.loan?.due.toString()
+            tvDueAmount.text = loanResponseItem.loan?.dueAmount.toString()
         }
     }
 
