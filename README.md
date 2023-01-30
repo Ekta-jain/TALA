@@ -9,4 +9,4 @@
 * Paid loan item
 ![Screenshot showing paid loan cards](./app/sampledata/TALA_3.png)
 * Lazy Loading
-![Video showing lazy loading of items on scroll](./app/sampledata/TALA_loader.mp4)
+![GIF showing lazy loading of items on scroll](./app/sampledata/TALA_loader.gif)
