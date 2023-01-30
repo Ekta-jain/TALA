@@ -9,6 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.e4ekta.tala.R
+import com.e4ekta.tala.databinding.ItemLoanDueRecordsBinding
 import com.e4ekta.tala.databinding.ItemLoanRecordsBinding
 import com.e4ekta.tala.models.LoanResponseItem
 
@@ -21,14 +22,41 @@ class LoanRecordsPagingAdapter :
         val tvSubHeader: TextView = binding.tvSubHeader
     }
 
+    class TextTypeViewHolder(binding: ItemLoanDueRecordsBinding) : RecyclerView.ViewHolder(binding.root) {
+//        var txtType: TextView
+//        var cardView: CardView
+//
+//        init {
+//            txtType = itemView.findViewById(R.id.type) as TextView
+//            cardView = itemView.findViewById(R.id.card_view) as CardView
+//        }
+    }
+
+//    override fun getItemViewType(position: Int): Int {
+//        return when (dataSet.get(position).type) {
+//            0 -> Model.TEXT_TYPE
+//            1 -> Model.IMAGE_TYPE
+//            2 -> Model.AUDIO_TYPE
+//            else -> -1
+//        }
+//    }
+
     override fun onBindViewHolder(holder: LoanRecordViewHolder, position: Int) {
         val item = getItem(position)
         if (item != null) {
             holder.tvHeader.text = item.username
-            if (item.loan.status == LoanStatus.APPROVED.toString()) {
-               // holder.tvHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
-              //  holder.tvSubHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
-            }
+            /*item.loan?.let {
+                Log.i("GetIdea","="+it.status +"::"+ LoanStatus.APPROVED.toString())
+                if (it.status == LoanStatus.APPROVED.toString()) {
+                    holder.tvHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
+                    holder.tvSubHeader.text = holder.itemView.context.resources.getString(R.string.approved_header);
+                } else if (it.status == LoanStatus.PAID.toString()) {
+                    holder.tvHeader.text = holder.itemView.context.resources.getString(R.string.paid_header);
+                    holder.tvSubHeader.text = holder.itemView.context.resources.getString(R.string.paid_sub_header);
+
+                }
+            }*/
+
         }
     }
 

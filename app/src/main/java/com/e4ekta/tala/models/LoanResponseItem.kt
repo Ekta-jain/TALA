@@ -8,7 +8,7 @@ data class LoanResponseItem(
     @SerializedName("id")
     val id: Int,
     @SerializedName("loan")
-    val loan: Loan,
+    val loan: Loan?,
     @SerializedName("locale")
     val locale: String,
     @SerializedName("timestamp")

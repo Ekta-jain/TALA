@@ -6,26 +6,33 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/_5sdp"
+        android:elevation="@dimen/_5sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageHeader"
+            <FrameLayout
+                android:id="@+id/frameImageHeader"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/teal_200"
-                android:padding="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/waves_bg_light_pattern"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_loan_status_apply" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_loan_status_apply" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tvHeader"
@@ -33,11 +40,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="8dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Headline"
                 android:text="Apply for a Loan"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageHeader" />
+                app:layout_constraintTop_toBottomOf="@id/frameImageHeader" />
 
             <TextView
                 android:id="@+id/tvSubHeader"
@@ -50,16 +57,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvHeader" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnApplyNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
                 android:background="@android:color/holo_orange_dark"
-                android:text="Apply Now"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/apply_now"
                 android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSubHeader" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
+
 </layout>
