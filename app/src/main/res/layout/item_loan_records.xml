@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_20sdp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/img_loan_status_apply" />
+                     />
 
             </FrameLayout>
 
