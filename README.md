@@ -19,7 +19,8 @@
 - [ktlint](https://github.com/JLLeitschuh/ktlint-gradle) - This plugin creates convenient tasks in your Gradle project that run ktlint checks or do code auto format.
 
 #### Lazy Loading
-![GIF showing lazy loading of items on scroll](./app/sampledata/TALA_loader.gif)
+
+<img alt="GIF showing lazy loading of items on scroll" src="./app/sampledata/TALA_loader.gif" width="30%" />  
 
 #### Assumption Added
 - Have added unique Id on testData.json for each loan records.
