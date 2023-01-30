@@ -2,7 +2,6 @@ package com.e4ekta.tala.paging
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -27,7 +26,7 @@ class LoanRecordsPagingAdapterV2(val result: Map<String, LocalsData>) :
         private val tvHeader: TextView = binding.tvHeader
         private val tvSubHeader: TextView = binding.tvSubHeader
         val imgHeader: AppCompatImageView = binding.imageHeader
-        val frameImageHeader: FrameLayout = binding.frameImageHeader
+//        val frameImageHeader: FrameLayout = binding.frameImageHeader
 
         fun bindData(loanResponseItem: LoanResponseItem) {
             val localsData = result[loanResponseItem.locale] as LocalsData
@@ -37,7 +36,7 @@ class LoanRecordsPagingAdapterV2(val result: Map<String, LocalsData>) :
                     tvSubHeader.text = String.format(
                         binding.root.context.resources.getString(R.string.approved_sub_header),
                         localsData.currency,
-                        it.approved
+                        it.approvedAmount
                     )
                     imgHeader.background = ContextCompat.getDrawable(
                         binding.root.context,

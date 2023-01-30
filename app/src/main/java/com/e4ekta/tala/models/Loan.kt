@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Loan(
     @SerializedName("approved")
-    val approved: Int,
+    val approvedAmount: Int,
     @SerializedName("due")
     val dueAmount: Int,
     @SerializedName("dueDate")
