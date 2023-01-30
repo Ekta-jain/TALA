@@ -18,10 +18,14 @@
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [ktlint](https://github.com/JLLeitschuh/ktlint-gradle) - This plugin creates convenient tasks in your Gradle project that run ktlint checks or do code auto format.
 
-
-
 #### Lazy Loading
 ![GIF showing lazy loading of items on scroll](./app/sampledata/TALA_loader.gif)
+
+#### Assumption Added
+1- Have added unique Id on testData.json for each loan records.
+2- Added Locals.json in local assests folder and parsed the data and shown currency. [Local handling]
+3- testData.json published on free server provided by Railway.app, It is live for limited hours [Network handling](https://tala-mock-server-production.up.railway.app/records?pagesize=3&pageno=3)
+4- "Paging 3.0 with Loading state" added so that all done could not be load once.
 
 ## 🚀 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
